@@ -102,6 +102,25 @@ future_df["predicted_sales"] = model.predict(future_df[["date_ordinal"]])
 st.dataframe(future_df[["date", "predicted_sales"]])
 
 fig3, ax3 = plt.subplots()
-ax3.plot(daily_sales_df["date"], daily_sales_df["sales_amount"], label="Historical")
-ax3.plot(future
+
+ax3.plot(
+    daily_sales_df["date"],
+    daily_sales_df["sales_amount"],
+    label="Historical Sales"
+)
+
+ax3.plot(
+    future_df["date"],
+    future_df["predicted_sales"],
+    linestyle="--",
+    marker="o",
+    label="Forecasted Sales"
+)
+
+ax3.set_title("Sales Forecast for Next 7 Days")
+ax3.set_ylabel("Sales Amount (₹)")
+ax3.legend()
+
+st.pyplot(fig3)
+
 
